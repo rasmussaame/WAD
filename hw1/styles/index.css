@@ -21,6 +21,10 @@
 .poster {
     display: flex;
     flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 1px 1px 5px;
+    margin-top: 20px;
 }
 
 .poster img {
@@ -28,7 +32,22 @@
     width: auto;
 }
 
-img {
+.date {
+    color: #8f8f8f;
+    margin-right: 10px;
+}
+
+.topper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.topper img {
+    margin: 10px;
+    height: 30px;
+}
+
+.header img {
     height: 30px;
     width: auto;
     margin-right: 10px;
