@@ -1,0 +1,32 @@
+[{
+    "id": 1,
+    "body": "I think it's going to rain",
+    "image": "https://wallpapercave.com/wp/wp2759075.png",
+    "createdAt": "Sep 23, 2021 15:30"
+},
+{
+    "id": 2,
+    "body": "Do we need more pizzas for next homework?",
+    "image": "",
+    "createdAt": "Sep 24, 2021 12:30"},
+{
+    "id": 3,
+    "body": "Does new Assassin's Creed happening in Estonia?",
+    "image": "https://wallpaperaccess.com/full/84414.jpg",
+    "createdAt": "Sep 25, 2021 10:14"},
+{
+    "id": 4,
+    "body": "How much wood could a woodchuck chuck if a woodchuck could chuck wood?",
+    "image": "",
+    "createdAt": "Sep 26, 2021 11:04"},
+{
+    "id": 5,
+    "body": "Magical sword stuck in rock",
+    "image": "https://wallpaperaccess.com/full/84415.jpg",
+    "createdAt": "Sep 26, 2021 11:04"},
+{
+    "id": 6,
+    "body": "Why spaghetti always brakes in 3?",
+    "image": "",
+    "createdAt": "Sep 26, 2021 11:04"}    
+]
