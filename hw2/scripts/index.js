@@ -1,3 +1,4 @@
+// var ajaxSrc = "https://api.npoint.io/f787b875527fba808786";
 var ajaxSrc = "json/posts.json";
 $(function() {
     $.get(ajaxSrc, function(posts) {
