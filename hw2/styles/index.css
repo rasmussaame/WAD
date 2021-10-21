@@ -87,3 +87,19 @@ input[type=text] {
     font-size: 17px;
     border: none;
 }
+#dropdown p {
+    margin: 0;
+    padding: 0;
+}
+#dropdown {
+    background-color: white;
+    position: absolute;
+    right: 0;
+    padding: 20px 10px;
+}
+.dd-hidden {
+    display: none;
+}
+.dd-shown {
+    display: inline-block;
+}

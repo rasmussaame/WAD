@@ -30,3 +30,15 @@ $(function() {
         $('body').append(posterArea)
     })
 });
+
+let state = "dd-hidden"
+
+function toggleDropdown(e) {
+    $("#dropdown").removeClass()
+    if (state == "dd-hidden") {
+        state = "dd-shown"
+    } else {
+        state = "dd-hidden"
+    }
+    $("#dropdown").addClass(state)
+}
