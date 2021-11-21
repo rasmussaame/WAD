@@ -26,6 +26,7 @@ a {
   display: inline-block;
   font-size: 16px;
   position: relative;
+  cursor: pointer;
 }
 h2 {
   padding: 40px;

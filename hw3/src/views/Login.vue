@@ -1,26 +1,26 @@
 <template>
   <div class="login_container">
-      <div class="content">
-        <div class="row">
-          <img src="../../images/postit.png" alt="Postit" id="postitImg" />
-          <h3>Welcome to postIt!</h3>
-        </div>
-        <a href="login">Create an account</a>
-        <p>Or</p>
-        <h2>Please login</h2>
-        <form action="/">
-          <input type="text" name="email" id="email" placeholder="Email" />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-          />
-          <input type="submit" value="Log In" id="submit" />
-        </form>
-        <a href="login">Forgot your password?</a>
+    <div class="content">
+      <div class="row">
+        <img src="../../images/postit.png" alt="Postit" id="postitImg" />
+        <h3>Welcome to postIt!</h3>
       </div>
+      <a href="login">Create an account</a>
+      <p>Or</p>
+      <h2>Please login</h2>
+      <form action="/">
+        <input type="text" name="email" id="email" placeholder="Email" />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <input type="submit" value="Log In" id="submit" />
+      </form>
+      <a href="login">Forgot your password?</a>
     </div>
+  </div>
 </template>
 
 <script>
@@ -105,5 +105,4 @@ export default {
 .row > * {
   display: inline;
 }
-
 </style>

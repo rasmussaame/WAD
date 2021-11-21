@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "Contact us",
+  name: "Contactus",
   components: {},
 };
 </script>
