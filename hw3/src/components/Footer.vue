@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <h2>This is Footer</h2>
-    <a @click="contactUs">Here you get to Contact Us page</a>
+    <a @click="contactUs">Click here to get to Contact Us page</a>
   </div>
 </template>
 
