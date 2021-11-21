@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <Header class="header" />
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -11,8 +12,9 @@
 
 <script>
 import Footer from "./components/Footer.vue";
+import Header from "./components/Header.vue";
 export default {
-  components: { Footer },
+  components: { Footer, Header },
 };
 </script>
 
