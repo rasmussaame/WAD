@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h1>Home</h1>
-    <post />
+  <div class="homepage">
+    <div class="container">
+      <post v-for="post in $store.state.posts" :key="post.id" :post="post" />
+    </div>
+    <button class="resetLikes" @click="reset">Reset likes</button>
   </div>
 </template>
 
@@ -15,7 +17,34 @@ export default {
     // console.log(this.$store.state.posts[0].likes);
     // this.$store.commit("likePost", 1);
   },
+  methods: {
+    reset() {
+      this.$store.commit("clearLikes");
+    },
+  },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.homepage {
+  background-color: blue;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  .container {
+    background-color: white;
+    height: 100%;
+    width: 50%;
+    padding-top: 30px;
+  }
+  .resetLikes {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+</style>

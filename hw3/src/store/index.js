@@ -79,8 +79,18 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-    likePost(state, index) {
-      state.posts[index].likes++;
+    likePost(state, id) {
+      for (let index = 0; index < state.posts.length; index++) {
+        if (state.posts[index].id == id) {
+          state.posts[index].likes++;
+          return;
+        }
+      }
+    },
+    clearLikes(state) {
+      for (let index = 0; index < state.posts.length; index++) {
+        state.posts[index].likes = 0;
+      }
     },
   },
   actions: {},
