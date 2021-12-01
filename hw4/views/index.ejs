@@ -1,18 +1,38 @@
 <html>
 <head>
 <title>Page Title</title>
+<link rel="stylesheet" href="/main.css">
 </head>
 <body>
-  ….
-  <nav>
-  <a href="/">Home </a> |
-  <a href="/posts">Posts page</a> |
-  <a href="/contactus">Contact us</a>
-  </nav>
-  ….
+  <%- include("../components/header.ejs") %>
+
+  <div class="login_container">
+    <div class="content">
+      <div class="row">
+        <img src="/img/postit.png" alt="Postit" id="postitImg" />
+        <h3>Welcome to postIt!</h3>
+      </div>
+      <a href="/">Create an account</a>
+      <p>Or</p>
+      <h2>Please login</h2>
+      <form action="/posts">
+        <input type="text" name="email" id="email" placeholder="Email" />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <input type="submit" value="Log In" id="submit" />
+      </form>
+      <a href="/">Forgot your password?</a>
+    </div>
+  </div>
+
+  <!-- TODO: Footer korda (ja ühiseks komponendiks?) -->
  <footer class="footer">
   <p>© WAD 2021 </p>
  </footer>
-  ….
+
  </body>
 </html>

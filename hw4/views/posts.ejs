@@ -1,16 +1,38 @@
 <html>
 <head>
 <title>Page Title</title>
+<link rel="stylesheet" href="/main.css">
 </head>
 <body>
-  <div class="posts list">
-    <h2>All posts</h2>
-    <% posts.forEach(post => { %>
-    <!-- <img :src="post.image" :alt="post.body" v-if="post.image" /> -->
-    <p class="body">
-    <%= post.body %>
-    </p>
-    <% }) %>
+  <%- include("../components/header.ejs") %>
+  <div class="homepage">
+    <div class="container">
+      <div class="posts list">
+        <h2>All posts</h2>
+        <% posts.forEach(post => { %>
+        <div class="post">
+          <div class="topper">
+            <img src="/img/user.png" alt="User" />
+            <p class="date"><%= post.createdAt %></p>
+          </div>
+          <!-- TODO: add link to singlepost /> -->
+          <% if(post.image != "") { %>
+            <img src=" <%= post.image %> " alt=" <%= post.body %> " />
+          <% } %>
+
+          <h2><%= post.body %></h2>
+          <div class="like">
+            <p>Likes: <%= post.likes %></p>
+            <!-- TODO: Like adding logic -->
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/SMirC-thumbsup.svg/1200px-SMirC-thumbsup.svg.png"
+              alt="Like"
+            />
+          </div>
+        </div>
+        <% }) %>
+      </div>
     </div>
+  </div>
  </body>
 </html>

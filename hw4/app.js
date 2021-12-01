@@ -41,6 +41,8 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "cssPublic")));
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/img', express.static(__dirname + '/images'));
+app.use('/webfonts', express.static(__dirname + '/scss/webfonts'));
 
 app.use((req, res) => {
   res.status(404).render("404");
