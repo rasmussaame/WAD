@@ -25,6 +25,7 @@ app.get("/posts", async (req, res) => {
 
 app.get("/singlepost", (req, res) => {
   res.render("singlepost");
+  // TODO: Küsi õige postitus id põhjal
 });
 
 app.get("/addnewpost", (req, res) => {

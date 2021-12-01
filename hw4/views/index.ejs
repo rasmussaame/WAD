@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-  <%- include("../components/header.ejs") %>
+  <%- include("../partial/header.ejs") %>
 
   <div class="login_container">
     <div class="content">
@@ -29,10 +29,7 @@
     </div>
   </div>
 
-  <!-- TODO: Footer korda (ja ühiseks komponendiks?) -->
- <footer class="footer">
-  <p>© WAD 2021 </p>
- </footer>
+  <%- include("../partial/footer.ejs") %>
 
  </body>
 </html>
