@@ -19,6 +19,7 @@ app.get("/posts", async (req, res) => {
     res.render("posts", { posts: posts.rows });
   } catch (err) {
     console.error(err.message);
+    res.status(500).send(err.message);
   }
 });
 
