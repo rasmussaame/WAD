@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon app.js",
-    "rasmus-dev": "kill -9 $(lsof -t -i:3000); nodemon app.js"
+    "rasmus-dev": "nodemon --exec \"npm run kill; node app.js\"",
+    "kill": "kill -9 $(lsof -t -i:3000)"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
