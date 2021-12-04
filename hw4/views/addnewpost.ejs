@@ -3,18 +3,50 @@
   <title>Page Title</title>
   <link rel="stylesheet" href="/main.css">
 </head>
-<body>
-  <%- include("../partial/header.ejs") %>
+  <body>
+    <%- include("../partial/header.ejs") %>
 
-  <div class="body-container new-post-container">
-    <div class="new-post">
-      <h1>
-        Add new post
-      </h1>
+    <div class="body-container new-post-container">
+      <div class="new-post">
+        <h1>
+          Add new post
+        </h1>
+        <form id="newpostform">
+          <input type="text" name="body" id="body" placeholder="Post body" />
+          <input type="text" name="image" id="image" placeholder="Post image url (can be empty)" />
+          <input type="submit" value="Create new post" id="submit" />
+        </form>
+      </div>
     </div>
-  </div>
-  
-  <!-- TODO: Posti lisamise leht -->
-  <%- include("../partial/footer.ejs") %>
- </body>
+
+    <%- include("../partial/footer.ejs") %>
+
+    <script>
+      let form = document.getElementById("newpostform")
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault()
+        let formdata = new FormData(form)
+        let object = {};
+        formdata.forEach((value, key) => {
+          object[key] = value;
+        });
+
+        if ((new RegExp(/(https?:\/\/.*\.(?:png|jpg)$)/i)).test(object.image) || object.image == "") {
+          fetch('/addnewpost', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(object)
+          })
+          .then(data => alert("Success"))
+          .catch(err => alert(err))
+        } else {
+          alert("Faulty image url")
+        }        
+      })
+    </script>
+
+  </body>
 </html>

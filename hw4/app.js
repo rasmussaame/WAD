@@ -61,12 +61,28 @@ app.get("/singlepost/:id", (req, res) => {
 
 app.get("/addnewpost", (req, res) => {
   res.render("addnewpost");
-  // TODO: Näita uue postituse lehekülge
 });
 
-app.post("/addnewpost", (req, res) => {
-  res.status(200);
-  // TODO: Salvesta uus postitus andmebaasi
+let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+app.post("/addnewpost", async (req, res) => {
+  console.log(req.body)
+  if (!req.body.body) {
+    return res.status(400).json({ error: "Missing body" })
+  }
+  if (!(new RegExp(/(https?:\/\/.*\.(?:png|jpg|jpeg))$/i)).test(req.body.image) && !req.body.image == "") {
+    return res.status(400).json({ error: "Faulty image url" })
+  }
+  
+  try {
+    let date = new Date()
+    let currentDate = `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()} ${date.getTime()}`
+    await pool.query(`INSERT INTO posts (body, image, likes, "createdAt") values ('${req.body.body}', '${req.body.image}', 0, '${currentDate}');`)
+  } catch (err) {
+    return res.status(500).json({ error: err.message })
+  }
+  
+  res.status(200).send("OK");
 });
 
 app.use(
