@@ -9,10 +9,8 @@ const bodyParser = require("body-parser");
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
 
-// TODO teeme mingi eraldi index lehe ka???
-// Imo võiks lih redirect /posts teha aga mdea
+// TODO teeme mingi eraldi index lehe ka??? - nah
 app.get("/", (req, res) => {
-  // res.redirect(302, "/posts");  // Nii näteks
   res.render("index");
 });
 
@@ -88,4 +86,6 @@ app.use((req, res) => {
   res.status(404).render("404");
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("App listening on port 3000")
+});
