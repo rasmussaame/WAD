@@ -3,9 +3,11 @@ const pool = require("./database");
 const app = express();
 const path = require("path");
 const sassMiddleware = require("node-sass-middleware");
+const bodyParser = require("body-parser");
 
 // register the ejs view engine
 app.set("view engine", "ejs");
+app.use(bodyParser.json());
 
 // TODO teeme mingi eraldi index lehe ka???
 app.get("/", (req, res) => {
@@ -19,8 +21,36 @@ app.get("/posts", async (req, res) => {
     res.render("posts", { posts: posts.rows });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send(err.message);
+    res.status(500).json({ error: err.message });
   }
+});
+
+app.post("/resetlikes", async (req, res) => {
+  try {
+    await pool.query("UPDATE posts SET likes = 0;");
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/like", async (req, res) => {
+  console.log(req.body);
+  if (!req.body.id)
+    return res.status("400").json({ error: "No id field in body" });
+
+  let id = parseInt(req.body.id);
+  if (isNaN(id))
+    return res.status("400").json({ error: "Id has to be numeric" });
+
+  try {
+    await pool.query(`UPDATE posts SET likes = likes + 1 WHERE id = ${id};`);
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).json({ error: err.message });
+  }
+
+  res.sendStatus(200);
 });
 
 app.get("/singlepost", (req, res) => {
@@ -30,6 +60,7 @@ app.get("/singlepost", (req, res) => {
 
 app.get("/addnewpost", (req, res) => {
   res.render("addnewpost");
+  // TODO: Näita uue postituse lehekülge
 });
 
 app.use(
@@ -42,8 +73,8 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "cssPublic")));
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/img', express.static(__dirname + '/images'));
-app.use('/webfonts', express.static(__dirname + '/scss/webfonts'));
+app.use("/img", express.static(__dirname + "/images"));
+app.use("/webfonts", express.static(__dirname + "/scss/webfonts"));
 
 app.use((req, res) => {
   res.status(404).render("404");
