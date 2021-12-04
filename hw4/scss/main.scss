@@ -1,11 +1,9 @@
 @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
-h1 {
-  color: red;
-  .sinine {
-    background-color: blue;
-  }
+body, html {
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
@@ -241,4 +239,14 @@ input[type="text"] {
 
 .row > * {
   display: inline;
+}
+
+.post-anchor {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  color: inherit;
+  text-align: inherit;
 }

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "rasmus-dev": "kill -9 $(lsof -t -i:3000); nodemon app.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",

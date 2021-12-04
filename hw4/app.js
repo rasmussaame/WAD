@@ -10,7 +10,9 @@ app.set("view engine", "ejs");
 app.use(bodyParser.json());
 
 // TODO teeme mingi eraldi index lehe ka???
+// Imo võiks lih redirect /posts teha aga mdea
 app.get("/", (req, res) => {
+  // res.redirect(302, "/posts");  // Nii näteks
   res.render("index");
 });
 
@@ -53,7 +55,8 @@ app.post("/like", async (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/singlepost", (req, res) => {
+app.get("/singlepost/:id", (req, res) => {
+  console.log(`Singlepost ${req.params.id}`);
   res.render("singlepost");
   // TODO: Küsi õige postitus id põhjal
 });
@@ -61,6 +64,11 @@ app.get("/singlepost", (req, res) => {
 app.get("/addnewpost", (req, res) => {
   res.render("addnewpost");
   // TODO: Näita uue postituse lehekülge
+});
+
+app.post("/addnewpost", (req, res) => {
+  res.status(200);
+  // TODO: Salvesta uus postitus andmebaasi
 });
 
 app.use(
