@@ -53,10 +53,27 @@ app.post("/like", async (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/singlepost/:id", (req, res) => {
-  console.log(`Singlepost ${req.params.id}`);
-  res.render("singlepost");
-  // TODO: Küsi õige postitus id põhjal
+app.get("/singlepost/:id", async (req, res) => {
+  try {
+    console.log("get post by id request has arrived");
+    const post = await pool.query(`SELECT * FROM posts WHERE id=${req.params.id};`);
+    res.render("singlepost", { post: post.rows[0] });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/deletepost/:id", async (req, res) => {
+  try {
+    console.log("delete post by id request has arrived");
+    await pool.query(`DELETE FROM posts WHERE id=${req.params.id};`);
+    const posts = await pool.query("SELECT * FROM posts");
+    res.render("posts", { posts: posts.rows });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.get("/addnewpost", (req, res) => {

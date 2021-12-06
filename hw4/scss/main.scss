@@ -155,6 +155,16 @@ input[type="text"] {
       cursor: pointer;
     }
   }
+  .right-like {
+    display: flex;
+    padding: 10px;
+    justify-content: flex-end;
+  }
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .homepage {

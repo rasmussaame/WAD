@@ -5,8 +5,11 @@
 </head>
 <body>
   <%- include("../partial/header.ejs") %>
+  <!-- TODO: Kui ainult üks post ja ilma pildita, siis läheb layout katki -->
   <div class="homepage body-container">
     <div class="container">
+      <!-- TODO: if no posts in db, show “you did not post anything” 
+      Note: “posts” is an array, you can check if it is empty by checking its length.-->
       <div class="posts list">
         <h2>All posts</h2>
         <!-- TODO: reset likes button missing -->
