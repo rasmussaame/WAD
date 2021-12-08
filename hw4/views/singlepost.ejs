@@ -23,10 +23,10 @@
                 <p>Likes: <%= post.likes %></p>
               </div>
             </div>
+            <div class="center">
+              <a href="/deletepost/<%= post.id %>" + post.id>Delete</a>
+            </div>
         </div>
-      </div>
-      <div class="center">
-        <a href="/deletepost/<%= post.id %>" + post.id>Delete</a>
       </div>
     </div>
   </div>

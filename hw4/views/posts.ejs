@@ -5,12 +5,14 @@
 </head>
 <body>
   <%- include("../partial/header.ejs") %>
-  <!-- TODO: Kui ainult üks post ja ilma pildita, siis läheb layout katki -->
+  <!-- TODO: Kui ainult üks post ja ilma pildita(või kui pole postitusi), siis läheb layout katki -->
   <div class="homepage body-container">
     <div class="container">
-      <!-- TODO: if no posts in db, show “you did not post anything” 
-      Note: “posts” is an array, you can check if it is empty by checking its length.-->
       <div class="posts list">
+        <% if(posts.length === 0) { %>
+          <h2>You did not post anything</h2>
+
+        <% } else { %>
         <h2>All posts</h2>
         <!-- TODO: reset likes button missing -->
         <% posts.forEach(post => { %>
@@ -20,7 +22,6 @@
               <img src="/img/user.png" alt="User" />
               <p class="date"><%= post.createdAt %></p>
             </div>
-            <!-- TODO: add link to singlepost /> -->
             <% if(post.image != "") { %>
               <img src=" <%= post.image %> " alt=" <%= post.body %> " />
             <% } %>
@@ -28,15 +29,19 @@
             <h2><%= post.body %></h2>
             <div class="like">
               <p>Likes: <%= post.likes %></p>
-              <!-- TODO: Like adding logic -->
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/SMirC-thumbsup.svg/1200px-SMirC-thumbsup.svg.png"
-                alt="Like"
-              />
+              <% if(!post.liked) { %>
+              <a href="/like/<%= post.id %>" id="like">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/SMirC-thumbsup.svg/1200px-SMirC-thumbsup.svg.png"
+                  alt="Like"
+                />
+              </a>
+              <% } %>
             </div>
           </div>
         </a>
         <% }) %>
+        <% } %>
       </div>
     </div>
   </div>

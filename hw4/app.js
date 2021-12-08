@@ -5,6 +5,8 @@ const path = require("path");
 const sassMiddleware = require("node-sass-middleware");
 const bodyParser = require("body-parser");
 
+let firstRun = true
+
 // register the ejs view engine
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
@@ -17,7 +19,12 @@ app.get("/", (req, res) => {
 app.get("/posts", async (req, res) => {
   try {
     console.log("get posts request has arrived");
-    const posts = await pool.query("SELECT * FROM posts");
+    // If new session, then set all posts likeable
+    if (firstRun) {
+      await pool.query("UPDATE posts SET liked = false WHERE liked = true")
+      firstRun = false
+    }
+    const posts = await pool.query("SELECT * FROM posts ORDER BY id ASC");
     res.render("posts", { posts: posts.rows });
   } catch (err) {
     console.error(err.message);
@@ -34,23 +41,18 @@ app.post("/resetlikes", async (req, res) => {
   }
 });
 
-app.post("/like", async (req, res) => {
-  console.log(req.body);
-  if (!req.body.id)
-    return res.status("400").json({ error: "No id field in body" });
-
-  let id = parseInt(req.body.id);
-  if (isNaN(id))
-    return res.status("400").json({ error: "Id has to be numeric" });
-
+app.get("/like/:id", async (req, res) => {
+  console.log("add like request has arrived");
+  const id = parseInt(req.params.id)
   try {
-    await pool.query(`UPDATE posts SET likes = likes + 1 WHERE id = ${id};`);
+    console.log("Adding like to post " + id);
+    await pool.query(`UPDATE posts SET likes = likes + 1, liked=true WHERE id = ${id};`);
+    // let's jump back to posts page
+    res.redirect("/posts")
   } catch (err) {
     console.log(err.message);
     return res.status(500).json({ error: err.message });
   }
-
-  res.sendStatus(200);
 });
 
 app.get("/singlepost/:id", async (req, res) => {
@@ -68,8 +70,8 @@ app.get("/deletepost/:id", async (req, res) => {
   try {
     console.log("delete post by id request has arrived");
     await pool.query(`DELETE FROM posts WHERE id=${req.params.id};`);
-    const posts = await pool.query("SELECT * FROM posts");
-    res.render("posts", { posts: posts.rows });
+    // let's jump back to posts page
+    res.redirect("/posts")
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ error: err.message });
