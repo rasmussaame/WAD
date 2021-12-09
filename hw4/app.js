@@ -66,12 +66,11 @@ app.get("/singlepost/:id", async (req, res) => {
   }
 });
 
-app.get("/deletepost/:id", async (req, res) => {
+app.delete("/deletepost/:id", async (req, res) => {
   try {
     console.log("delete post by id request has arrived");
     await pool.query(`DELETE FROM posts WHERE id=${req.params.id};`);
-    // let's jump back to posts page
-    res.redirect("/posts")
+    res.sendStatus(200);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ error: err.message });

@@ -24,7 +24,7 @@
               </div>
             </div>
             <div class="center">
-              <a href="/deletepost/<%= post.id %>" + post.id>Delete</a>
+              <a href="#" id="deletePost">Delete</a>
             </div>
         </div>
       </div>
@@ -32,5 +32,21 @@
   </div>
 
   <%- include("../partial/footer.ejs") %>
+
+  <script>
+    let deletePost = document.getElementById("deletePost")
+
+    deletePost.addEventListener("click", (event) => {
+      event.preventDefault()
+        fetch('/deletepost/<%= post.id %>', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(data => alert("Post deleted successfully"))
+        .catch(err => alert(err))    
+    })
+  </script>
  </body>
 </html>
