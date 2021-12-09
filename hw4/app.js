@@ -84,6 +84,7 @@ app.get("/addnewpost", (req, res) => {
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 app.post("/addnewpost", async (req, res) => {
+  console.log("Adding new post")
   console.log(req.body)
   if (!req.body.body) {
     return res.status(400).json({ error: "Missing body" })
@@ -94,8 +95,12 @@ app.post("/addnewpost", async (req, res) => {
   
   try {
     let date = new Date()
-    // TODO date.getTime() gives us time from epoch not time of day. Need to fix this to get hours and minutes.
-    let currentDate = `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()} ${date.getTime()}`
+    let hoursMinutes = date.toLocaleTimeString("et-EE", {
+      hour: '2-digit',
+      minute:'2-digit',
+      hour12: false
+    }); 
+    let currentDate = `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()} ${hoursMinutes}`
     await pool.query(`INSERT INTO posts (body, image, likes, "createdAt") values ('${req.body.body}', '${req.body.image}', 0, '${currentDate}');`)
   } catch (err) {
     return res.status(500).json({ error: err.message })
