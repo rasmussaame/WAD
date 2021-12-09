@@ -11,7 +11,6 @@ let firstRun = true
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
 
-// TODO teeme mingi eraldi index lehe ka??? - nah
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -89,6 +88,9 @@ app.post("/addnewpost", async (req, res) => {
   if (!req.body.body) {
     return res.status(400).json({ error: "Missing body" })
   }
+  if (!req.body.title) {
+    return res.status(400).json({ error: "Missing title" })
+  }
   if (!(new RegExp(/(https?:\/\/.*\.(?:png|jpg|jpeg))$/i)).test(req.body.image) && !req.body.image == "") {
     return res.status(400).json({ error: "Faulty image url" })
   }
@@ -101,7 +103,7 @@ app.post("/addnewpost", async (req, res) => {
       hour12: false
     }); 
     let currentDate = `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()} ${hoursMinutes}`
-    await pool.query(`INSERT INTO posts (body, image, likes, "createdAt") values ('${req.body.body}', '${req.body.image}', 0, '${currentDate}');`)
+    await pool.query(`INSERT INTO posts (body, image, likes, "createdAt", title) values ('${req.body.body.replace("'", "''")}', '${req.body.image.replace("'" ,"''")}', 0, '${currentDate}', '${req.body.title.replace("'", "''")}');`)
   } catch (err) {
     return res.status(500).json({ error: err.message })
   }

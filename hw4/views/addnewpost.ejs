@@ -5,13 +5,13 @@
 </head>
   <body>
     <%- include("../partial/header.ejs") %>
-    <!-- TODO The css layout is broken -->
     <div class="body-container new-post-container">
       <div class="new-post">
         <h1>
           Add new post
         </h1>
         <form id="newpostform">
+          <input type="text" name="title" id="title" placeholder="Post title" />
           <input type="text" name="body" id="body" placeholder="Post body" />
           <input type="text" name="image" id="image" placeholder="Post image url (can be empty)" />
           <input type="submit" value="Create new post" id="submit" />
@@ -44,7 +44,7 @@
           .catch(err => alert(err))
         } else {
           alert("Faulty image url")
-        }        
+        }
       })
     </script>
 

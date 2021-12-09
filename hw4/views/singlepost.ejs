@@ -5,13 +5,10 @@
 </head>
 <body>
   <%- include("../partial/header.ejs") %>
-
-  <div class="body-container"> <!-- See klass venitab täispikkuseks, kui contenti vähem @Kaarel -->
-    <!-- TODO see klass ei tööta päris kui ilma pildita post -->
     <div class="homepage body-container">
       <div class="container">
             <div class="post">
-              <h2><%= post.body %></h2>
+              <h2><%= post.title %></h2>
               <div class="topper">
                 <img src="/img/user.png" alt="User" />
                 <p class="date"><%= post.createdAt %></p>
@@ -19,6 +16,7 @@
               <% if(post.image != "") { %>
                 <img class="main-img" src=" <%= post.image %> " alt=" <%= post.body %> " />
               <% } %>
+              <p style="padding-left: 10px;"><%= post.body %></p>
               <div class="right-like">
                 <p>Likes: <%= post.likes %></p>
               </div>
@@ -29,7 +27,7 @@
         </div>
       </div>
     </div>
-  </div>
+  
 
   <%- include("../partial/footer.ejs") %>
 
@@ -44,7 +42,10 @@
             'Content-Type': 'application/json'
           }
         })
-        .then(data => alert("Post deleted successfully"))
+        .then(data => {
+          alert("Post deleted successfully")
+          window.location.href = "/posts"
+        })
         .catch(err => alert(err))    
     })
   </script>

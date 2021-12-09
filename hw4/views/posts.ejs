@@ -5,8 +5,6 @@
 </head>
 <body>
   <%- include("../partial/header.ejs") %>
-  <!-- TODO: Kui ainult üks post ja ilma pildita(või kui pole postitusi), siis läheb layout katki -->
-  <!-- TODO: Lisada postitustele title ning kontrollida, et me nii posts lehel kui ka singlepost lehel kuvame seda -->
   <div class="homepage body-container">
     <div class="container">
       <div class="posts list">
@@ -26,16 +24,17 @@
               <img class="main-img" src=" <%= post.image %> " alt=" <%= post.body %> " />
             <% } %>
 
-            <h2><%= post.body %></h2>
+            <h2><%= post.title %></h2>
+            <p class="post-body"><%= post.body %></p>
             <div class="like">
               <p>Likes: <%= post.likes %></p>
               <% if(!post.liked) { %>
-              <a href="/like/<%= post.id %>" id="like">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/SMirC-thumbsup.svg/1200px-SMirC-thumbsup.svg.png"
-                  alt="Like"
-                />
-              </a>
+                <a href="/like/<%= post.id %>" id="like">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/SMirC-thumbsup.svg/1200px-SMirC-thumbsup.svg.png"
+                    alt="Like"
+                  >
+                </a>
               <% } %>
             </div>
           </div>
