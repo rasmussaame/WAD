@@ -17,7 +17,7 @@
                 <p class="date"><%= post.createdAt %></p>
               </div>
               <% if(post.image != "") { %>
-                <img src=" <%= post.image %> " alt=" <%= post.body %> " />
+                <img class="main-img" src=" <%= post.image %> " alt=" <%= post.body %> " />
               <% } %>
               <div class="right-like">
                 <p>Likes: <%= post.likes %></p>

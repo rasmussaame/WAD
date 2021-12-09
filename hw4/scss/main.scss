@@ -144,6 +144,9 @@ input[type="text"] {
   img {
     max-width: 100%;
   }
+  .main-img {
+    width: 100%;
+  }
   h2 {
     padding: 10px;
   }
@@ -191,7 +194,7 @@ input[type="text"] {
     cursor: pointer;
   }
 }
-
+/* This class is broken when post doesn't have picture */
 .body-container {
   flex-grow: 1;
 }

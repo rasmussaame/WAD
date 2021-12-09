@@ -94,6 +94,7 @@ app.post("/addnewpost", async (req, res) => {
   
   try {
     let date = new Date()
+    // TODO date.getTime() gives us time from epoch not time of day. Need to fix this to get hours and minutes.
     let currentDate = `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()} ${date.getTime()}`
     await pool.query(`INSERT INTO posts (body, image, likes, "createdAt") values ('${req.body.body}', '${req.body.image}', 0, '${currentDate}');`)
   } catch (err) {
