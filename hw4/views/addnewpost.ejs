@@ -40,7 +40,10 @@
             },
             body: JSON.stringify(object)
           })
-          .then(data => alert("Success"))
+          .then(data => {
+            alert("Success")
+            window.location.href = "/posts"
+        })
           .catch(err => alert(err))
         } else {
           alert("Faulty image url")
